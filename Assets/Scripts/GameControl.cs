@@ -25,8 +25,11 @@ public class GameControl : MonoBehaviour
             {
                 Debug.Log("Hit detected: " + hit.transform.gameObject.name);
                 //Implement something to ignore when plane is clicked.
-                StartingChicken chick = hit.transform.gameObject.GetComponent<StartingChicken>();
-                chick.ClickAction();
+                if (!hit.transform.gameObject.CompareTag("Plane")) 
+                {
+                    Chicken chick = hit.transform.gameObject.GetComponent<Chicken>();
+                    chick.ClickAction();
+                }
             }
         }
     }

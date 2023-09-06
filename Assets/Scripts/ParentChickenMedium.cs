@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParentChickenMedium: StartingChicken
+public class ParentChickenMedium: Chicken
 {
     public override void ClickAction()
     {
