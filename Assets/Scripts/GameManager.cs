@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //Singleton Game Manger
-    private static GameManager Instance { get; set; }
+    public static GameManager Instance { get; private set; }
     
     //This is a hack to display hash table like structure in the Unity inspector
     [Serializable]
@@ -17,27 +17,29 @@ public class GameManager : MonoBehaviour
     }
     [SerializeField]
     private StartingChicks[] startingChickPrefabSetter;
-
+    public GameObject firstChick;
+    public int spawnCount = 12;
+    public float explosiveness = 3000;
 
     //Simple variables
     private Dictionary<string, GameObject> startingChickDict;
     private Vector3 startPos = new Vector3(0,-52,-100);
-    private int m_difficulty = 1;
-    public int SelectedDifficulty // 1=Easy, 2=Med, 3=Hard
+    public bool IsGameActive = false;
+    private int m_difficulty = 0;
+    public int SelectedDifficulty // 0=Standard, 1=Cross, 2=Chaos
     {
         get{ return m_difficulty; }
         set {
-            if (value < 1 || value > 3) 
+            if (value < 0 || value > 2) 
             {
-                Debug.LogWarning("Difficulty must be between 1~3");
+                Debug.LogWarning("Difficulty must be between 0~2");
             }
             else
             {
                 m_difficulty = value;
             }
         }
-    } 
-
+    }
     private void Awake()
     {
         //Only one instance of Game Manger allowed
@@ -57,40 +59,76 @@ public class GameManager : MonoBehaviour
         {
             startingChickDict.Add(startingChickPrefabSetter[i].difficulty, startingChickPrefabSetter[i].chickPrefab);
         }
-
+    }
+    private void Start()
+    {
         SpawnFirstChick();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void SpawnFirstChick()
     {
-        GameObject firstChick;
         switch (m_difficulty)
         {
+            case 0:
+                firstChick = startingChickDict["Standard"];
+                break;
             case 1:
-                firstChick = startingChickDict["Easy"];
+                firstChick = startingChickDict["Cross"];
                 break;
             case 2:
-                firstChick = startingChickDict["Medium"];
-                break;
-            case 3:
-                firstChick = startingChickDict["Hard"];
+                firstChick = startingChickDict["Chaos"];
                 break;
             default:
-                firstChick = startingChickDict["Easy"];
+                firstChick = startingChickDict["Standard"];
                 break;
         }
-        Instantiate(firstChick, startPos, firstChick.transform.rotation);
+        firstChick = Instantiate(firstChick, startPos, firstChick.transform.rotation);
+    }
+
+    public void SpawnFirstChick(Vector3 pos)
+    {
+        switch (m_difficulty)
+        {
+            case 0:
+                firstChick = startingChickDict["Standard"];
+                break;
+            case 1:
+                firstChick = startingChickDict["Cross"];
+                break;
+            case 2:
+                firstChick = startingChickDict["Chaos"];
+                break;
+            default:
+                firstChick = startingChickDict["Standard"];
+                break;
+        }
+        firstChick = Instantiate(firstChick, pos, firstChick.transform.rotation);
+    }
+
+    public void updateStartChickType(int optionSelected)
+    {
+        
+        if (firstChick != null)
+        {
+            Vector3 posToSpawn = startPos;
+            m_difficulty = optionSelected;
+            posToSpawn = firstChick.transform.position;
+            firstChick.gameObject.SetActive(false);
+            SpawnFirstChick(posToSpawn);
+        }
+        else
+        {
+            SpawnFirstChick();
+        }
+    }
+
+    public void ResetGame()
+    {
+        if(firstChick != null)
+        {
+            firstChick.gameObject.SetActive(false);
+        }
+        GameManager.Instance.IsGameActive = false;
+        GameManager.Instance.SpawnFirstChick();
     }
 }

@@ -11,9 +11,7 @@ public abstract class Chicken : MonoBehaviour, IClickable
     private Vector3 previousPos;
     private float speed = 10;
     private bool hasReachedCentre = false;
-    private int numChicksToSpawn = 12;
     private Rigidbody chickRb;
-    private float explosionForce = 3000f;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +54,9 @@ public abstract class Chicken : MonoBehaviour, IClickable
 
     public virtual void ClickAction()
     {
+        int numChicksToSpawn = GameManager.Instance.spawnCount;
         //Spawn child chick around the object clicked
-        double radianTick = (360/numChicksToSpawn) * (Math.PI/180);
+        double radianTick = (360/ numChicksToSpawn) * (Math.PI/180);
         double radius = 10;
 
         for (int i=0; i <numChicksToSpawn; i++)
@@ -74,7 +73,7 @@ public abstract class Chicken : MonoBehaviour, IClickable
             
         }
         //Add explosion so child chicks fly away
-        PushChicksAway((float) radius * 2);
+        PushChicksAway((float) radius * 3);
 
         Destroy(gameObject);
     }
@@ -88,7 +87,7 @@ public abstract class Chicken : MonoBehaviour, IClickable
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
             if (rb != null)
-                rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, 3.0F);
+                rb.AddExplosionForce(GameManager.Instance.explosiveness, explosionPos, explosionRadius, 0);
         }
         
     }

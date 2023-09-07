@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParentChickenGpuTest: Chicken
+public class ParentChickenChaotic: Chicken
 {
     public override void ClickAction()
     {

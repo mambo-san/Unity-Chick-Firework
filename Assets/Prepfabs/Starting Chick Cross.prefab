@@ -829,8 +829,10 @@ GameObject:
   - component: {fileID: 8798960534260411396}
   - component: {fileID: 4925592873042222310}
   - component: {fileID: 5947675450882040093}
+  - component: {fileID: -1468651086089574692}
+  - component: {fileID: 28112858466392844}
   m_Layer: 0
-  m_Name: Starting Chick Medium
+  m_Name: Starting Chick Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -893,6 +895,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childChick: {fileID: 5320802623694342556, guid: 8a719de456bf031418043bbc45bef661, type: 3}
+--- !u!54 &-1468651086089574692
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838668449259934368}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &28112858466392844
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838668449259934368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7.3362365
+  m_Height: 17.738024
+  m_Direction: 1
+  m_Center: {x: 0.6480318, y: 8.205469, z: 2.2039218}
 --- !u!1 &5907568672846953076
 GameObject:
   m_ObjectHideFlags: 0

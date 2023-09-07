@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 2881004967991619217}
   - component: {fileID: -5340545207491989723}
   m_Layer: 0
-  m_Name: Starting Chick Easy
+  m_Name: Starting Chick Standard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
