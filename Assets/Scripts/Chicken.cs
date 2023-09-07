@@ -13,7 +13,7 @@ public abstract class Chicken : MonoBehaviour, IClickable
     private bool hasReachedCentre = false;
     private int numChicksToSpawn = 12;
     private Rigidbody chickRb;
-    private float explosionForce = 2000f;
+    private float explosionForce = 3000f;
 
     // Start is called before the first frame update
     void Start()
