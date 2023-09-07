@@ -13,6 +13,7 @@ public abstract class Chicken : MonoBehaviour, IClickable
     private bool hasReachedCentre = false;
     private int numChicksToSpawn = 12;
     private Rigidbody chickRb;
+    private float explosionForce = 2000f;
 
     // Start is called before the first frame update
     void Start()
@@ -57,10 +58,12 @@ public abstract class Chicken : MonoBehaviour, IClickable
     {
         //Spawn child chick around the object clicked
         double radianTick = (360/numChicksToSpawn) * (Math.PI/180);
+        double radius = 10;
+
         for (int i=0; i <numChicksToSpawn; i++)
         {
             double angle =  radianTick * i;
-            double radius = 10;
+            
 
             float x = (float) (radius * Math.Cos(angle));
             float y = (float) (radius * Math.Sin(angle));
@@ -71,15 +74,22 @@ public abstract class Chicken : MonoBehaviour, IClickable
             
         }
         //Add explosion so child chicks fly away
-        StartCoroutine(PushChicksAway());
+        PushChicksAway((float) radius * 2);
+
+        Destroy(gameObject);
     }
 
-    IEnumerator PushChicksAway()
+    private void PushChicksAway(float explosionRadius)
     {
-        Debug.Log("Chicks instantiated");
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("Adding exlosion force");
-        chickRb.AddExplosionForce(1000, previousPos, 25, 0, ForceMode.Impulse);
-        Destroy(gameObject);
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, 3.0F);
+        }
+        
     }
 }
