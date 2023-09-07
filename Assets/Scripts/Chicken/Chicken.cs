@@ -78,16 +78,27 @@ public abstract class Chicken : MonoBehaviour, IClickable
         Destroy(gameObject);
     }
 
-    private void PushChicksAway(float explosionRadius)
+    protected void PushChicksAway(float explosionRadius)
     {
         Vector3 explosionPos = transform.position;
+        float explosiveness = GameManager.Instance.explosiveness;
+        switch (GameManager.Instance.SelectedType)
+        {
+            case 0:
+                break;
+            case 1:
+                explosiveness = explosiveness /2.5f;
+                break;
+            case 2:
+                break;
+        }
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
             if (rb != null)
-                rb.AddExplosionForce(GameManager.Instance.explosiveness, explosionPos, explosionRadius, 0);
+                rb.AddExplosionForce(explosiveness, explosionPos, explosionRadius, 0);
         }
         
     }

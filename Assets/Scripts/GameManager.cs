@@ -25,10 +25,10 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, GameObject> startingChickDict;
     private Vector3 startPos = new Vector3(0,-52,-100);
     public bool IsGameActive = false;
-    private int m_difficulty = 0;
-    public int SelectedDifficulty // 0=Standard, 1=Cross, 2=Chaos
+    private int m_chick_type = 0;
+    public int SelectedType // 0=Standard, 1=Cross, 2=Chaos
     {
-        get{ return m_difficulty; }
+        get{ return m_chick_type; }
         set {
             if (value < 0 || value > 2) 
             {
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                m_difficulty = value;
+                m_chick_type = value;
             }
         }
     }
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnFirstChick()
     {
-        switch (m_difficulty)
+        switch (m_chick_type)
         {
             case 0:
                 firstChick = startingChickDict["Standard"];
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnFirstChick(Vector3 pos)
     {
-        switch (m_difficulty)
+        switch (m_chick_type)
         {
             case 0:
                 firstChick = startingChickDict["Standard"];
@@ -107,11 +107,11 @@ public class GameManager : MonoBehaviour
 
     public void updateStartChickType(int optionSelected)
     {
-        
+        m_chick_type = optionSelected;
         if (firstChick != null)
         {
             Vector3 posToSpawn = startPos;
-            m_difficulty = optionSelected;
+            m_chick_type = optionSelected;
             posToSpawn = firstChick.transform.position;
             firstChick.gameObject.SetActive(false);
             SpawnFirstChick(posToSpawn);
