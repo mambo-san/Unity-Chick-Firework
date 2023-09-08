@@ -11,13 +11,12 @@ public abstract class Chicken : MonoBehaviour, IClickable
     private Vector3 previousPos;
     private float speed = 10;
     private bool hasReachedCentre = false;
-    private Rigidbody chickRb;
+
 
     // Start is called before the first frame update
     void Start()
     {
         previousPos = transform.position;
-        chickRb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
