@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class ParentChickenSpiral: Chicken
 {
+    // POLYMORPHISM
     public override void ClickAction()
     {
         int numChicksToSpawn = GameManager.Instance.spawnCount;

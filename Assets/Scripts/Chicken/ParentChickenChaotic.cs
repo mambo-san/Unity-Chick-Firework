@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class ParentChickenChaotic: Chicken
 {
+    // POLYMORPHISM
     public override void ClickAction()
     {
         int numToSpawn = GameManager.Instance.spawnCount;

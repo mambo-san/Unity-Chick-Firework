@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, GameObject> startingChickDict;
     private Vector3 startPos = new Vector3(0,-52,-100);
     public bool IsGameActive = false;
+
+    // ENCAPSULATION example
     private int m_chick_type = 0;
     public int SelectedType // 0=Standard, 1=Cross, 2=Chaos
     {
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
         SpawnFirstChick();
     }
 
+    
     public void SpawnFirstChick()
     {
         switch (m_chick_type)
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
         }
         firstChick = Instantiate(firstChick, startPos, firstChick.transform.rotation);
     }
-
+    // POLYMORPHISM - Method overload example
     public void SpawnFirstChick(Vector3 pos)
     {
         switch (m_chick_type)
