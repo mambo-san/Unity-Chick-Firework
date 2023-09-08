@@ -8,7 +8,7 @@ public class ParentChickenChaotic: Chicken
     {
         int numToSpawn = GameManager.Instance.spawnCount;
         float range = 25;
-        float delayTime = (0.5f/numToSpawn) + 0.05f;
+        float delayTime = (0.5f/numToSpawn) + 0.02f;
         Debug.Log(delayTime);
         StartCoroutine(SpawnChicks(numToSpawn, range, delayTime));
     }

@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 #endif
+using UnityEngine;
 
 public class CursorVisible : MonoBehaviour
 {
